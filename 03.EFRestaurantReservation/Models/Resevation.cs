@@ -10,6 +10,7 @@ namespace _03.EFRestaurantReservation.Models
     public class Resevation : BaseModel
     {
         public DateTime ReservationDate { get; set; }
+        public string Description { get; set; }
         public int CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]

@@ -36,9 +36,9 @@ namespace _03.EFRestaurantReservation.Froms
             try
             {
                 Menu menu = new Menu();
-                menu.Title = txtAddTitle.Text;
-                menu.Description = txtAddDescription.Text;
-                menu.Price = Convert.ToInt32(txtAddPrice.Text);
+                menu.Title = txtTitle.Text;
+                menu.Description = txtDescription.Text;
+                menu.Price = Convert.ToInt32(txtPrice.Text);
 
                 MenuService menuService = new MenuService();
                 menuService.AddMenu(menu);
@@ -81,9 +81,9 @@ namespace _03.EFRestaurantReservation.Froms
 
                 if (menu != null)
                 {
-                    txtUpdateTitle.Text = menu.Title;
-                    txtUpdateDescription.Text = menu.Description;
-                    txtUpdatePrice.Text = menu.Price.ToString();
+                    txtTitle.Text = menu.Title;
+                    txtDescription.Text = menu.Description;
+                    txtPrice.Text = menu.Price.ToString();
                 }
             }
             catch (Exception)
@@ -102,9 +102,9 @@ namespace _03.EFRestaurantReservation.Froms
                 RestaurantContext db = new RestaurantContext();
                 Menu menu = db.Menu.FirstOrDefault(x => x.Id == selectedMenuId);
                 
-                menu.Title = txtUpdateTitle.Text;
-                menu.Description = txtUpdateDescription.Text;
-                menu.Price = Convert.ToDecimal(txtUpdatePrice.Text);
+                menu.Title = txtTitle.Text;
+                menu.Description = txtDescription.Text;
+                menu.Price = Convert.ToDecimal(txtPrice.Text);
 
                 db.SaveChanges();                
 

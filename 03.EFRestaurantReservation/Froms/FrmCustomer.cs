@@ -27,11 +27,11 @@ namespace _03.EFRestaurantReservation
             try
             {
                 Customer customer = new Customer();
-                customer.Name = txtAddName.Text.Trim();
-                customer.Surname = txtAddSurname.Text.Trim();
-                customer.Email = txtAddEmail.Text.Trim();
-                customer.Phone = txtAddPhone.Text.Trim();
-                customer.Address = txtAddAddress.Text.Trim();
+                customer.Name = txtName.Text.Trim();
+                customer.Surname = txtSurname.Text.Trim();
+                customer.Email = txtEmail.Text.Trim();
+                customer.Phone = txtPhone.Text.Trim();
+                customer.Address = txtAddress.Text.Trim();
 
                 CustomerService customerService = new CustomerService();
                 customerService.AddCustomer(customer);
@@ -76,11 +76,11 @@ namespace _03.EFRestaurantReservation
 
                 if (customer != null)
                 {
-                    txtUpdateName.Text = customer.Name;
-                    txtUpdateSurname.Text = customer.Surname;
-                    txtUpdateEmail.Text = customer.Email;
-                    txtUpdatePhone.Text = customer.Phone;
-                    txtUpdateAddress.Text = customer.Address;
+                    txtName.Text = customer.Name;
+                    txtSurname.Text = customer.Surname;
+                    txtEmail.Text = customer.Email;
+                    txtPhone.Text = customer.Phone;
+                    txtAddress.Text = customer.Address;
 
                 }
             }
@@ -99,11 +99,11 @@ namespace _03.EFRestaurantReservation
 
                 RestaurantContext db = new RestaurantContext();
                 Customer customer = db.Customers.FirstOrDefault(x => x.Id == selectedCustomerId);
-                customer.Name = txtUpdateName.Text.Trim();
-                customer.Surname = txtUpdateSurname.Text.Trim();
-                customer.Email = txtUpdateEmail.Text.Trim();
-                customer.Phone = txtUpdatePhone.Text.Trim();
-                customer.Address = txtUpdateAddress.Text.Trim();
+                customer.Name = txtName.Text.Trim();
+                customer.Surname = txtSurname.Text.Trim();
+                customer.Email = txtEmail.Text.Trim();
+                customer.Phone = txtPhone.Text.Trim();
+                customer.Address = txtAddress.Text.Trim();
 
                 db.SaveChanges();
                 LoadData();
