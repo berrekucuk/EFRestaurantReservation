@@ -12,7 +12,7 @@ using _03.EFRestaurantReservation.Models;
 namespace _03.EFRestaurantReservation.Migrations
 {
     [DbContext(typeof(RestaurantContext))]
-    [Migration("20240326110828_ResevationsTableDescriptionColumnAdded")]
+    [Migration("20240327134649_ResevationsTableDescriptionColumnAdded")]
     partial class ResevationsTableDescriptionColumnAdded
     {
         /// <inheritdoc />

@@ -1,4 +1,5 @@
 ﻿using _03.EFRestaurantReservation.Models;
+using _03.EFRestaurantReservation.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,38 +21,40 @@ namespace _03.EFRestaurantReservation.Froms
 
         private void FrmReservationCreate_Load(object sender, EventArgs e)
         {
-            RestaurantContext db = new RestaurantContext();
-            List<Customer> customer = db.Customers.ToList();
+            LoadData();
 
-            cmbCustomer.DataSource = customer;
+            CustomerService customerService = new CustomerService();
+            List<Customer> customer = customerService.GetAllCustomer();
+            cmbCustomer.DataSource = customer;            
             cmbCustomer.DisplayMember = "Name";
             cmbCustomer.ValueMember = "Id";
-            LoadData(db);
-
         }
 
-        private void LoadData(RestaurantContext db)
+        private void LoadData()
         {
-            List<Resevation> resevation = db.Resevations.ToList();
-            dgvResevationList.DataSource = resevation;
+            ReservationService reservationService = new ReservationService();
+            List<Resevation> reservation = reservationService.GetAllReservation();
+            dgvResevationList.DataSource = reservation;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            RestaurantContext db = new RestaurantContext();
-            Resevation resevation = new Resevation()
-            {
-                CustomerId = Convert.ToInt32(cmbCustomer.SelectedValue),
-                ReservationDate = Convert.ToDateTime(dtpreservationDate.Value),
-                Description = txtDescription.Text,
-                AddDate = DateTime.Now
-            };
+            Resevation resevation = new Resevation();
+            resevation.CustomerId =Convert.ToInt32(cmbCustomer.SelectedValue);
 
-            db.Resevations.Add(resevation);
-            db.SaveChanges();
-            LoadData(db);
-            
+            //Customer selectedCustomer = (Customer)cmbCustomer.SelectedItem;
+            //resevation.Customer = selectedCustomer;
 
+            resevation.Description = txtDescription.Text;
+            resevation.ReservationDate = dtpreservationDate.Value;
+            resevation.AddDate = DateTime.Now;
+            resevation.IsDeleted = false;
+
+            ReservationService reservationService = new ReservationService();
+            reservationService.AddReservation(resevation);
+
+            LoadData();
+            MessageBox.Show("Reservation added successfully!");
         }
     }
 }
