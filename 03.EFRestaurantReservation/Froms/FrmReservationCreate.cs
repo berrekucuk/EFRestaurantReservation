@@ -39,22 +39,30 @@ namespace _03.EFRestaurantReservation.Froms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Resevation resevation = new Resevation();
-            resevation.CustomerId =Convert.ToInt32(cmbCustomer.SelectedValue);
+            try
+            {
+                Resevation resevation = new Resevation();
+                resevation.CustomerId = Convert.ToInt32(cmbCustomer.SelectedValue);
 
-            //Customer selectedCustomer = (Customer)cmbCustomer.SelectedItem;
-            //resevation.Customer = selectedCustomer;
+                //Customer selectedCustomer = (Customer)cmbCustomer.SelectedItem;
+                //resevation.Customer = selectedCustomer;
 
-            resevation.Description = txtDescription.Text;
-            resevation.ReservationDate = dtpreservationDate.Value;
-            resevation.AddDate = DateTime.Now;
-            resevation.IsDeleted = false;
+                resevation.Description = txtDescription.Text;
+                resevation.ReservationDate = dtpreservationDate.Value;
+                resevation.AddDate = DateTime.Now;
+                resevation.IsDeleted = false;
 
-            ReservationService reservationService = new ReservationService();
-            reservationService.AddReservation(resevation);
+                ReservationService reservationService = new ReservationService();
+                reservationService.AddReservation(resevation);
 
-            LoadData();
-            MessageBox.Show("Reservation added successfully!");
+                LoadData();
+                MessageBox.Show("Reservation added successfully!");
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("There was an error adding!");
+            }
         }
     }
 }
