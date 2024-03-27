@@ -60,7 +60,13 @@ namespace _03.EFRestaurantReservation.Froms
         private void btnReservation_Click(object sender, EventArgs e)
         {
             FrmReservationCreate frmReservationCreate = new FrmReservationCreate();
-            FormCheck (frmReservationCreate);
+            FormCheck(frmReservationCreate);
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            FrmCreateOrder frmCreateOrder = new FrmCreateOrder();
+            FormCheck(frmCreateOrder);
         }
     }
 }
